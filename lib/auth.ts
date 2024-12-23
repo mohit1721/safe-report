@@ -44,6 +44,20 @@ export const authOptions: AuthOptions = {
       },
     }),
   ],
+// callbacks: {
+//   async jwt({ token, user }) {
+//     if (user) {
+//       token.role = user.role;
+//     }
+//     return token;
+//   },
+//   async session({ session, token }) {
+//     if (session?.user) {
+//       session.user.role = token.role;
+//     }
+//     return session;
+//   },
+// },
 
   //a Json web token to uh to be stored
 // inside the sectoion so that when the user refreshes  the page ,they still stayed logged in... in our platform
