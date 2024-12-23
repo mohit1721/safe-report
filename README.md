@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛡️ Anonymous Reporting App  
+A secure platform for anonymous incident reporting.
 
-## Getting Started
+---
 
-First, run the development server:
+## 📋 Table of Contents  
+- [🤖 Introduction](#-introduction)  
+- [⚙️ Tech Stack](#-tech-stack)  
+- [🔋 Features](#-features)  
+- [🤸 Quick Start](#-quick-start)  
+- [🕸️ Environment Setup](#-environment-setup)  
+- [🚀 Deployment](#-deployment)  
 
+---
+
+## 🤖 Introduction  
+This is a state-of-the-art **anonymous reporting system** built with **Next.js 14**, designed to provide a secure platform for reporting incidents while maintaining **complete anonymity**.
+
+---
+
+## ⚙️ Tech Stack  
+- **Next.js 14**  
+- **TypeScript**  
+- **Prisma with Neon Database**  
+- **NextAuth.js for Authentication**  
+- **Tailwind CSS**  
+- **React Hook Form**  
+- **GeminiAI**  
+- **BCrypt for Password Encryption**  
+
+---
+
+## 🔋 Features  
+- **Secure Anonymous Reporting:** Ensures privacy with robust encryption.  
+- **Role-Based Access:** Admin panel for report management.  
+- **Real-Time Updates:** Instantly see report status changes.  
+- **User Authentication:** Powered by NextAuth.js.  
+- **Responsive Design:** Optimized for mobile and desktop.  
+- **AI-Powered Insights:** Integrated with GeminiAI for advanced reporting.  
+
+---
+
+## 🤸 Quick Start  
+### Prerequisites  
+Make sure you have the following installed:  
+- **Node.js**  
+- **npm**  
+- **Git**  
+
+### Installation  
 ```bash
+# Clone the repository
+git clone <your-repo-url>
+cd anonymous-reporting-system
+
+# Install dependencies
+npm install
+
+# Set up the database
+npx prisma generate
+npx prisma db push
+
+# Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+ 
+## <a name="environment">🕸️ Environment Setup</a>
+
+Create a `.env` file in the root directory with the following variables:
+
+```env
+
+NEXT_PUBLIC_MAPBOX_API_KEY=your-mapbox-key
+DATABASE_URL=postgresql:your-database-url
+NEXTAUTH_SECRET="your-secret-key"
+NEXTAUTH_URL="http://localhost:3000/api/auth"
+GEMINI_API_KEY=your-gemini-api-key
+NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=your-mapbox-access-api-key
+
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## <a name="deployment">🚀 Deployment</a>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The application can be easily deployed on [Vercel](https://vercel.com):
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Push your code to a Git repository
+2. Connect your repository to Vercel
+3. Configure the environment variables
+4. Deploy!
