@@ -7,7 +7,7 @@ import prisma from "@/lib/prisma";
 //   NON_EMERGENCY
 // }
 
-export async function POST(request: Request, res: Response)
+export async function POST(request: Request )
 {
 
     try {

@@ -5,6 +5,9 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import prisma from "@/lib/prisma";
 
+/*
+use //@ts-nocheck at top - mk 
+*/
 
 const handler = NextAuth({
     adapter: PrismaAdapter(prisma),

@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 
 import { useState } from "react";
 import { AddressAutofill } from "@mapbox/search-js-react";
@@ -72,7 +72,9 @@ interface LocationInputProps {
           setIsGettingLocation(false);
         }
       };
-
+/*
+use /////@ts-nocheck  at top //mk
+*/
       return (
         <div className="space-y-2">
  <label className="block text-sm font-medium text-zinc-400">

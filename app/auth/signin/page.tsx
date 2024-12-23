@@ -42,6 +42,7 @@ await: Ensures the function waits for the sign-in process to complete before mov
       }
     } catch (error) {
       setError("An error occurred during sign in");
+      console.log(error)
     } finally {
       setIsLoading(false);
     }

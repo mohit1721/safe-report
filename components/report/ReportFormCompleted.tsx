@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 // import ReactDOM from 'react-dom';
 // import { CopyToClipboard } from 'react-copy-to-clipboard';
 // import { TiClipboard } from "react-icons/ti";
@@ -11,8 +11,8 @@ interface ReportSubmittedProps {
   
 export function ReportSubmitted({data}: ReportSubmittedProps) {
     const reportId = data.reportId || "ERROR-ID-NOT-FOUND";
-    const [value, setValue] = useState('');
-    const [copied, setCopied] = useState(false);
+    // const [value, setValue] = useState('');
+    // const [copied, setCopied] = useState(false);
     return (
         <div className="text-center space-y-6">
         <div className="flex flex-col items-center">
