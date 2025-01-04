@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { Report, ReportStatus, ReportType } from "@prisma/client";
 import { signOut } from "next-auth/react";
+import Image from "next/image";
 
 
 export default function Dashboard(){
@@ -187,7 +188,7 @@ in the app. for the aünin
                         </span>
                       </div>
                       {report.image && (
-                        <img
+                        <Image
                           src={report.image}
                           alt="Report"
                           className="mt-4 rounded-lg border border-neutral-800"

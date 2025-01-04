@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import { LocationInput } from "./LocationInput";
 import crypto from "crypto";
+import Image from "next/image";
  const REPORT_TYPES = [
     "Murder",
     "Felony",
@@ -202,7 +203,7 @@ export function ReportForm({onComplete} : ReportFormProps){
           );
         };
         
- 
+        
  
  
  
@@ -256,7 +257,7 @@ if (data.title && data.description && data.reportType) {
         //     return images.map((file, index) => (
         //       <div key={index} className="space-y-4">
         //         <div className="w-full h-48 relative rounded-lg overflow-hidden">
-        //           <img
+        //           <Image
         //             src={`file`} // Create a temporary URL for preview
         //             alt={`Preview-${index}`}
         //             className="w-full h-full object-cover border-2 border-zinc-500"
@@ -417,7 +418,7 @@ if (data.title && data.description && data.reportType) {
           {image ? (
             <div className="space-y-4">
               <div className="w-full h-48 relative rounded-lg overflow-hidden">
-                <img
+                <Image
                   src={image}
                   alt="Preview"
                   className="w-full h-full object-cover"
