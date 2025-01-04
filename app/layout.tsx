@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import {Providers} from './providers';
 const inter = Inter({ subsets: ["latin"] });
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata={
   //seo
@@ -31,6 +32,8 @@ export default function RootLayout({
     <main className="pt-16">
       <Providers>
       {children}
+      <Toaster />
+
       </Providers>
 
     </main>

@@ -1,5 +1,11 @@
 "use client";
 import React from 'react';
+import { GrCopy } from "react-icons/gr";
+
+import { FaShareSquare } from "react-icons/fa";
+import {toast} from 'react-hot-toast'
+import copy from "copy-to-clipboard";
+
 // import ReactDOM from 'react-dom';
 // import { CopyToClipboard } from 'react-copy-to-clipboard';
 // import { TiClipboard } from "react-icons/ti";
@@ -7,7 +13,12 @@ interface ReportSubmittedProps {
     data: any;
     onComplete: (data: any) => void;
   }
-
+  const handleShare = (reportId) => { //link copy krna h aur toast dikhana h
+     //copy current location[link]
+    copy (reportId); //window is object
+    toast.success("Report ID Copied to Clipboard");
+  };
+    
   
 export function ReportSubmitted({data}: ReportSubmittedProps) {
     const reportId = data.reportId || "ERROR-ID-NOT-FOUND";
@@ -45,7 +56,11 @@ export function ReportSubmitted({data}: ReportSubmittedProps) {
 
             <code
             className="text-sky-400">{reportId}</code>
-
+<div className="text-center" >
+ <button className=" mx-auto flex items-center gap-2 py-6 text-yellow-100" 
+ onClick={() => handleShare(reportId)} ><GrCopy size={15} />Copy Report ID</button>
+ </div>
+{/* 77669ef79ad0bd3f */}
         
           </div>
           <p className="mt-2 text-sm text-zinc-400">
