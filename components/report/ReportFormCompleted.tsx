@@ -2,7 +2,7 @@
 import React from 'react';
 import { GrCopy } from "react-icons/gr";
 
-import { FaShareSquare } from "react-icons/fa";
+// import { FaShareSquare } from "react-icons/fa";
 import {toast} from 'react-hot-toast'
 import copy from "copy-to-clipboard";
 

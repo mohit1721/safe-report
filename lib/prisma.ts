@@ -15,7 +15,6 @@
 // }
 // export default prisma;
 
-import { PrismaClient } from "@prisma/client";
 
 // export const db = globalThis.prisma || new PrismaClient();
 
@@ -23,16 +22,18 @@ import { PrismaClient } from "@prisma/client";
 //   globalThis.prisma = db;
 // }
 
-declare global {
-  var prisma: PrismaClient | undefined;
-}
-let prisma: any;
+import { PrismaClient } from "@prisma/client";
+
+// declare global {
+  let prisma: PrismaClient | undefined;
+// }
+// let prisma: any;
 if (process.env.NODE_ENV === "production") {
   prisma = new PrismaClient();
 } else {
-  if (!global.prisma) {
-    global.prisma = new PrismaClient();
+  if (!prisma) {
+    prisma = new PrismaClient();
   }
-  prisma = global.prisma;
+  prisma = prisma;
 }
 export default prisma;
