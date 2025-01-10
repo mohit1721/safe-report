@@ -188,7 +188,7 @@ in the app. for the aünin
                         </span>
                       </div>
                       {report.image && (
-                        <Image
+                        <img
                           src={report.image}
                           alt="Report"
                           className="mt-4 rounded-lg border border-neutral-800"

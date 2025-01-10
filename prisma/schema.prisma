@@ -44,7 +44,23 @@ model User {
   password String
   role     Role     @default(USER)
 }
-
+model Draft {
+  id          String   @id @default(cuid())
+  reportId    String      @unique
+  type        ReportType @default(EMERGENCY)
+  title       String
+  description String
+  reportType  String
+  location    String?
+  latitude    Float?
+  longitude   Float?
+  image       String?
+  video       String?
+  status      ReportStatus @default(PENDING)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  @@index([reportId])
+}
 enum Role {
   ADMIN
   MODERATOR

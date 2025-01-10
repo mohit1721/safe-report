@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["react-hook-form"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,

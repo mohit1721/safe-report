@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import { LocationInput } from "./LocationInput";
 import crypto from "crypto";
 import Image from "next/image";
+import {toast} from 'react-hot-toast'
  const REPORT_TYPES = [
     "Murder",
     "Felony",
@@ -313,9 +314,10 @@ if (data.title && data.description && data.reportType) {
               }
         
               onComplete(result);
+              toast.success("Report submitted successfully")
 
             } catch (error) {
-              console.error("Error submitting report:", error);
+              toast.error("Error submitting report:");
             } finally {
               setIsSubmitting(false);
             }
@@ -418,8 +420,9 @@ if (data.title && data.description && data.reportType) {
           {image ? (
             <div className="space-y-4">
               <div className="w-full h-48 relative rounded-lg overflow-hidden">
-                <Image
+                <img
                   src={image}
+                  // width={auto}
                   alt="Preview"
                   className="w-full h-full object-cover"
                 />
