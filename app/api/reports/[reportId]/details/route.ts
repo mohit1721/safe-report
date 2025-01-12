@@ -8,6 +8,7 @@ import { getServerSession } from "next-auth";
 
 const prisma = new PrismaClient();
 
+// Calls an API endpoint (/api/reports/${reportId}/details) to retrieve the report data.
 
 export async function GET(
     request: Request,

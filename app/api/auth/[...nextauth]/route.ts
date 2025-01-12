@@ -11,7 +11,7 @@ use //@ts-nocheck at top - mk
 */
 
 const handler = NextAuth({
-    adapter: PrismaAdapter(prisma),
+    adapter: PrismaAdapter(prisma), // to connect NextAuth to the Prisma ORM
     providers: [
       CredentialsProvider({
         name: "Credentials",
@@ -24,7 +24,7 @@ const handler = NextAuth({
             throw new Error("Please enter an email and password");
           }
   
-          const user = await prisma.user.findUnique({
+          const user = await prisma.user.findUnique({ //Prisma's findUnique method to query the database for a user with the provided email
             where: {
               email: credentials.email,
             },
@@ -75,4 +75,8 @@ const handler = NextAuth({
   });
   
   export { handler as GET, handler as POST };
-  
+  /*
+This code sets up a custom email/password authentication system using NextAuth with Prisma as the database adapter.
+ It checks the user’s credentials, hashes passwords securely, and creates a JWT session with the user’s role. 
+If successful, it provides the user with a session; otherwise, it returns appropriate error messages.
+  */

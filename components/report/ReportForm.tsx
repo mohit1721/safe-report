@@ -5,6 +5,7 @@ import { LocationInput } from "./LocationInput";
 import crypto from "crypto";
 import Image from "next/image";
 import {toast} from 'react-hot-toast'
+import { FileUploader } from "./FileUploader";
  const REPORT_TYPES = [
     "Murder",
     "Felony",
@@ -59,66 +60,24 @@ export function ReportForm({onComplete} : ReportFormProps){
       });
       const [isSubmitting, setIsSubmitting] = useState(false);
 
-       // State to hold the uploaded videos
+
   const [video, setVideo] = useState<string | null>(null);
-  // State to hold multiple uploaded images
-// const [images, setImages] = useState<(string[])>([]);
-// for preview purspose
+  // const [files, setFiles] = useState<File[]>([]); // State to hold File objects  // const [files, setFiles] = useState<string[]>([]); // State to hold Base64 strings of uploaded files
+//   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+//     const files = e.target.files; // Get all uploaded files
 
-  // const handleVideoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const file = e.target.files // Get the first uploaded video file
-  
-  //   if (!file) return;
-  //   setIsAnalyzing(true);
-  //   setVideo(file)
+//     if (!files) return; // If no files, exit the function
 
-  //   setIsAnalyzing(false);
-
-
-
-  //   // try {
-  //   //   // 🎥 Convert video file to Base64
-  //   //   const base64 = await new Promise<string>((resolve, reject) => {
-  //   //     const reader = new FileReader();
-  //   //     reader.onloadend = () => resolve(reader.result as string);
-  //   //     reader.onerror = reject;
-  //   //     reader.readAsDataURL(file); // Convert video to base64
-  //   //   });
-  
-  //   //   // 📤 Send the video to your backend API for analysis
-  //   //   const response = await fetch('/api/analyze-video', {
-  //   //     method: 'POST',
-  //   //     headers: { 'Content-Type': 'application/json' },
-  //   //     body: JSON.stringify({ video: base64 }),
-  //   //   });
-  
-  //   //   const data = await response.json();
-  
-  //   //   // ✅ Update form data if analysis returns useful data
-  //   //   if (data.title && data.description && data.reportType) {
-  //   //     setFormData((prev) => ({
-  //   //       ...prev,
-  //   //       title: data.title,
-  //   //       description: data.description,
-  //   //       specificType: data.reportType,
-  //   //     }));
-  //   //     setVideo(base64); // Store video preview URL
-  //   //   }
-  //   // } catch (error) {
-  //   //   console.error('Error analyzing video:', error);
-  //   // } finally {
-  //   //   setIsAnalyzing(false);
-  //   // }
-
-
-  // };
+//     const filesArray = Array.from(files); // Convert FileList to Array
+//     setFiles(filesArray); // Store the File objects in state
+// };
+ 
 
   const handleVideoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]; // Get the first uploaded video file
   
     if (!file) return;
     setIsAnalyzingv(true); // Start analysis state
-  
     try {
       // Convert the video file to Base64
       const base64 = await new Promise<string>((resolve, reject) => {
@@ -129,7 +88,7 @@ export function ReportForm({onComplete} : ReportFormProps){
       });
   
       setVideo(base64); // Store Base64 string for preview & backend
-  
+     
       // Example: Send Base64 video to backend
       const response = await fetch('/api/analyze-video', {
         method: 'POST',
@@ -154,39 +113,6 @@ export function ReportForm({onComplete} : ReportFormProps){
     }
   };
   
-
-
-  // Generate video previews
-  // const renderVideoPreviews = () => {
-  //   if (!video || video.length === 0) return null; // Check if videos are empty
-  
-  //   return Array.from(video).map((file, index) => {
-  //     const videoURL = URL.createObjectURL(file); // Temporary URL for preview
-  
-  //     // // Revoke object URL on component unmount or re-render
-  //     // useEffect(() => {
-  //     //   return () => URL.revokeObjectURL(videoURL);
-  //     // }, [videoURL]);
-  
-  //     return (
-  //       <div key={index} className="space-y-4">
-  //         <div className="w-full h-48 relative rounded-lg overflow-hidden">
-  //           <video
-  //             src={videoURL}
-  //             controls
-  //             className="w-full h-full object-cover border-2 border-zinc-500"
-  //           />
-  //         </div>
-  //         <p className="text-sm text-zinc-400">Click to change video</p>
-  //       </div>
-  //     );
-  //   });
-  // };
-
-  
-      
-        // Handle multiple image file selection
-   
         const renderVideoPreview = () => {
           if (!video) return null; // No video uploaded
         
@@ -203,10 +129,6 @@ export function ReportForm({onComplete} : ReportFormProps){
             </div>
           );
         };
-        
-        
- 
- 
  
         const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
        
@@ -252,23 +174,6 @@ if (data.title && data.description && data.reportType) {
 
         };
       
-        // const renderImagePreviews = () => {
-        //     if (!images) return null; // If no images are selected, return null.
-          
-        //     return images.map((file, index) => (
-        //       <div key={index} className="space-y-4">
-        //         <div className="w-full h-48 relative rounded-lg overflow-hidden">
-        //           <Image
-        //             src={`file`} // Create a temporary URL for preview
-        //             alt={`Preview-${index}`}
-        //             className="w-full h-full object-cover border-2 border-zinc-500"
-        //           />
-        //         </div>
-        //         <p className="text-sm text-zinc-400">Click to change image</p>
-        //       </div>
-        //     ));
-        //   };
-
           const generateReportId = useCallback(() => {
             const timestamp = Date.now().toString();
             const randomBytes = crypto.randomBytes(16).toString("hex");
@@ -283,7 +188,7 @@ if (data.title && data.description && data.reportType) {
           const handleSubmit = async (e: React.FormEvent) => {
             e.preventDefault();
             setIsSubmitting(true);
-        
+      
             try {
               const reportData = {
                 reportId: generateReportId(),
@@ -304,6 +209,7 @@ if (data.title && data.description && data.reportType) {
                 headers: {
                   "Content-Type": "application/json",
                 },
+                // body: formData, // Send formData as the body
                 body: JSON.stringify(reportData),
               });
         
@@ -312,7 +218,6 @@ if (data.title && data.description && data.reportType) {
               if (!response.ok) {
                 throw new Error(result.error || "Failed to submit report");
               }
-        
               onComplete(result);
               toast.success("Report submitted successfully")
 
@@ -544,7 +449,7 @@ if (data.title && data.description && data.reportType) {
       <input
         type="file"
         accept="video/*" // Accept video files
-        // multiple // Allow multiple file selection
+        
         onChange={handleVideoUpload} // Handle file selection
         className="hidden"
         id="video-upload"
@@ -611,6 +516,21 @@ if (data.title && data.description && data.reportType) {
         </div>
       )}
     </div>
+{/* 
+<div className="relative group">
+  <FileUploader files={files} setFiles={setFiles }/>
+</div>
+{files.length > 0 && (
+          <ul className="space-y-2">
+            {files.map((file, index) => (
+              <li key={index} className="text-sm text-zinc-400">
+                {file.name}
+              </li>
+            ))}
+          </ul>
+        )} */}
+
+
 
 
  {/* Specific Report Type */}

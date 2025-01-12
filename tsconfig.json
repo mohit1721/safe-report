@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
+    
     "types": ["react-hook-form"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -20,7 +21,9 @@
     ],
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+      
+    
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/report/ReportTracker.tsx"],
   "exclude": ["node_modules"]

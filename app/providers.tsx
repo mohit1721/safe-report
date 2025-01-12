@@ -7,3 +7,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
 }
 
 
+/*
+Iska primary purpose hai ki ye Next.js ke NextAuth
+ library ka SessionProvider use karke authentication ka context provide kare.
+*/

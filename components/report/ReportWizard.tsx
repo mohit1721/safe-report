@@ -16,8 +16,6 @@ export function ReportWizard(){
 //
 const handleStepComplete = async (data:any)=>{
     setReportData({...reportData , ...data}); // report data after we are done submitting the report we spread
-    
-
     if(currentStep=== 3)
     {
         return ;

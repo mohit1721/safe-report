@@ -31,7 +31,7 @@ export default function RootLayout({
     <Navbar/>
     <main className="pt-16">
       <Providers>
-      {children}
+      {children} {/* All pages/components will now have session access */}
       <Toaster />
 
       </Providers>

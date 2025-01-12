@@ -1,19 +1,13 @@
-
-
 import { NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
-
-
-
 
 export async function POST(request: Request){
     try {
         const { image } = await request.json();
         const base64Data = image.split(",")[1];
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
-
 
         const prompt = `Analyze this emergency situation image and respond in this exact format without any asterisks or bullet points: 
 

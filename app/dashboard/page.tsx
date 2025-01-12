@@ -6,7 +6,19 @@ import { Report, ReportStatus, ReportType } from "@prisma/client";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
 
-
+import 'video-react/dist/video-react.css';
+import {
+  BigPlayButton,
+  ControlBar,
+  CurrentTimeDisplay,
+  ForwardControl,
+  PlayToggle,
+  PlaybackRateMenuButton,
+  Player,
+  ReplayControl,
+  TimeDivider,
+  VolumeMenuButton,
+} from "video-react";
 export default function Dashboard(){
     const { data: session } = useSession();
     const [reports, setReports] = useState<Report[]>([]);
@@ -55,7 +67,7 @@ in the app. for the aünin
           console.error("Error updating report:", error);
         }
       };
-      const filteredReports = reports.filter((report) => {
+      const filteredReports = reports?.filter((report) => {
         const statusMatch = filter === "ALL" || report.status === filter;
         const typeMatch = typeFilter === "ALL" || report.type === typeFilter;
         return statusMatch && typeMatch;
@@ -144,7 +156,7 @@ in the app. for the aünin
               </div>
             </div>
     
-            <div className="grid gap-4">
+            <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 ">
               {filteredReports.map((report) => (
                 <div
                   key={report.id}
@@ -191,9 +203,90 @@ in the app. for the aünin
                         <img
                           src={report.image}
                           alt="Report"
-                          className="mt-4 rounded-lg border border-neutral-800"
+                          className="mt-4 object-cover rounded-lg w-[20rem] h-[20rem] border border-neutral-800"
                         />
                       )}
+             {/* {report?.video ? (
+  <video
+  src={`${report?.video}`}
+    controls
+    className="mt-4 object-cover rounded-lg w-[200px] lg:w-[20rem] h-auto lg:h-[20rem] border border-neutral-800"
+  />
+) : (
+  <p className="text-neutral-500">Video not available</p>
+)} */}
+
+{report?.video ? (
+      //use video player -npm i video-react
+      <Player  
+      // ref={`${report?.video}`}
+      aspectRatio="16:9"
+      playsInline
+      src={`${report?.video}`}
+      >  
+  <BigPlayButton position="center" />        
+      {/* <AiFillPlayCircle  /> */}
+  <ControlBar>
+  {/*Forwar and backward buttons  */}
+  <ReplayControl seconds={10} order={1.1} />
+  <ForwardControl seconds={30} order={1.2} />
+  <PlayToggle />
+      {/* Current display time */}
+  <CurrentTimeDisplay order={4.1} />
+
+  {/* Divider Sign */}
+  <TimeDivider order={4.2} />
+
+  {/* Speed of the Video */}
+  <PlaybackRateMenuButton
+  rates={[0.75, 1, 1.25, 1.5, 1.75, 2]}
+  order={7.1}/>
+  {/* volume */}
+  <VolumeMenuButton />
+</ControlBar>
+</Player>
+) : (
+  <p className="text-neutral-500">Video not available</p>
+)}
+
+
+{/* 
+ {report.files && report.files.length > 0 && (
+         <div className="mt-4">
+         <h3 className="font-medium text-neutral-200">Download Evidence Files</h3>
+         <div className="space-y-2">
+           {report.files.map((file) => (
+             <a
+               key={file.id}
+               href={file.filePath}
+               download
+               className="text-blue-500 hover:underline"
+             >
+               {file.fileType.toUpperCase()} File
+             </a>
+           ))}
+         </div>
+       </div>
+          )}
+ */}
+ 
+{/*  
+{report.files && report.files.length > 0 && (
+  <div>
+    {report.files.map((file) => (
+      <div key={file.id}>
+        <a
+          href={file.filePath}  // File path or URL
+          download
+          className="mt-4 text-blue-500 hover:underline"
+        >
+          Download {file.fileType === 'application/pdf' ? 'PDF' : 'Document'}
+        </a>
+      </div>
+    ))}
+  </div>
+)} */}
+
                     </div>
                     <select
                       value={report.status}
@@ -221,6 +314,10 @@ in the app. for the aünin
                 </div>
               )}
             </div>
+
+ 
+
+
           </main>
         </div>
       );

@@ -20,6 +20,7 @@ export function FileUploader({ files, setFiles }: FileUploaderProps) {
       <div className="rounded-lg border-2 border-dashed border-zinc-700 p-6">
         <input
           type="file"
+           
           multiple
           onChange={handleFileChange}
           className="hidden"
