@@ -1,0 +1,78 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ReportStatus{
+    PENDING
+    IN_PROGRESS
+    RESOLVED
+    DISMISSED
+}
+enum ReportType {
+  EMERGENCY
+  NON_EMERGENCY
+}
+
+model Report {
+  id          String   @id @default(cuid())
+  reportId    String      @unique
+  type        ReportType @default(EMERGENCY)
+  title       String
+  description String
+  reportType  String
+  location    String?
+  latitude    Float?
+  longitude   Float?
+  image       String?
+  video       String?
+  files       File[]    @relation("ReportFiles")
+  status      ReportStatus @default(PENDING)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  @@index([reportId])
+}
+model File {
+  id        String   @id @default(cuid())
+  reportId  String
+  filePath  String   // Path or URL to the file
+  fileType  String   // Type of the file (pdf, docx, etc.)
+  createdAt DateTime @default(now())
+
+  // Relation to report
+  report    Report   @relation("ReportFiles", fields: [reportId], references: [reportId])
+}
+model User {
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
+  name     String
+  password String
+  role     Role     @default(USER)
+}
+model Draft {
+  id          String   @id @default(cuid())
+  reportId    String      @unique
+  type        ReportType @default(EMERGENCY)
+  title       String
+  description String
+  reportType  String
+  location    String?
+  latitude    Float?
+  longitude   Float?
+  image       String?
+  video       String?
+  status      ReportStatus @default(PENDING)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  @@index([reportId])
+}
+enum Role {
+  ADMIN
+  MODERATOR
+  USER
+}
