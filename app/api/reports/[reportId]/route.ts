@@ -1,7 +1,8 @@
 // inside this route.we are going to 
 // have a patch function that will be used bt the admins to update the status of a report
 
-import prisma from "@/lib/prisma";
+// import prisma from "@/lib/prisma";
+import prisma from "../../../../lib/prisma"
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 // This code defines a PATCH route to allow admins to update the status of a report in a database using the Prisma ORM. 
