@@ -1,7 +1,7 @@
 'use client'
 
-import { ReportTracker } from "@/components/report/ReportTracker"
-
+// import { ReportTracker } from "@/components/report/ReportTracker"
+import { ReportTracker } from "../../components/report/ReportTracker"
 export default function TrackReportPage()
 {
 
