@@ -17,7 +17,7 @@ export async function POST(request: Request) {
     }
 
     // Check if user already exists
-    const existingUser = await prisma.user.findUnique({
+    const existingUser = await prisma?.user.findUnique({
       where: { email },
     });
 
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create user
-    const user = await prisma.user.create({
+    const user = await prisma!.user.create({
       data: {
         email,
         name,
@@ -40,10 +40,10 @@ export async function POST(request: Request) {
         role: role as "ADMIN" | "MODERATOR" | "USER",
       },
     });
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
     // Remove password from response
-    const { password: _password, ...userWithoutPassword } = user;
-
+    const { password: _password, ...userWithoutPassword } = user! ;// Using the non-null assertion operator
+console.log(_password)//not rec 
 /*
 password: _ extracts the password property from the user object but assigns it to _, which is just a throwaway variable (it means "I don't need this value").
 ...userWithoutPassword gathers the remaining properties of user into a new object named userWithoutPassword.

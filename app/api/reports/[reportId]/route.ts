@@ -15,11 +15,11 @@ export async function PATCH(
     if (!session) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-
+ 
     const { status } = await request.json();
-    const report = await prisma.report.update({
+    const report = await prisma?.report.update({
       where: { id: params.reportId },
-      data: { status },
+      data: { status }, 
     });
 
     return NextResponse.json(report);

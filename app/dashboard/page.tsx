@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { Report, ReportStatus, ReportType } from "@prisma/client";
 import { signOut } from "next-auth/react";
-import Image from "next/image";
+// import Image from "next/image";
 
 import 'video-react/dist/video-react.css';
 import {

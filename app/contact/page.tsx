@@ -32,7 +32,7 @@ const Contact: React.FC = () => {
   };
 
   const validateField = (fieldName: string, value: string) => {
-    let newErrors = { ...errors };
+    const newErrors = { ...errors };
 
     switch (fieldName) {
       case 'name':

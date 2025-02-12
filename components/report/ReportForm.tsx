@@ -3,9 +3,9 @@
 import { useState, useCallback } from "react";
 import { LocationInput } from "./LocationInput";
 import crypto from "crypto";
-import Image from "next/image";
+// import Image from "next/image";
 import {toast} from 'react-hot-toast'
-import { FileUploader } from "./FileUploader";
+// import { FileUploader } from "./FileUploader";
  const REPORT_TYPES = [
     "Murder",
     "Felony",
@@ -222,7 +222,8 @@ if (data.title && data.description && data.reportType) {
               toast.success("Report submitted successfully")
 
             } catch (error) {
-              toast.error("Error submitting report:");
+              console.log("Error submitting report:",error)
+              toast.error("Error submitting report");
             } finally {
               setIsSubmitting(false);
             }
