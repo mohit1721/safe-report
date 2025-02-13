@@ -6,7 +6,7 @@ import { Report, ReportStatus, ReportType } from "@prisma/client";
 import { signOut } from "next-auth/react";
 // import Image from "next/image";
 
-import 'video-react/dist/video-react.css';
+//import 'video-react/dist/video-react.css';
 // import {
 //   BigPlayButton,
 //   ControlBar,
