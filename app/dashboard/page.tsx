@@ -6,22 +6,6 @@ import { Report, ReportStatus, ReportType } from "@prisma/client";
 import { signOut } from "next-auth/react";
 // import Image from "next/image";
 
-<<<<<<< HEAD
-=======
-//import 'video-react/dist/video-react.css';
-// import {
-//   BigPlayButton,
-//   ControlBar,
-//   CurrentTimeDisplay,
-//   ForwardControl,
-//   PlayToggle,
-//   PlaybackRateMenuButton,
-//   Player,
-//   ReplayControl,
-//   TimeDivider,
-//   VolumeMenuButton
-// } from "@types/video-react";
->>>>>>> 2e5ca71867366f38bc372e43238728ae23b83716
 export default function Dashboard(){
     const { data: session } = useSession();
     const [reports, setReports] = useState<Report[]>([]);
