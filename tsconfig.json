@@ -2,7 +2,7 @@
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
     
-    "types": ["react-hook-form"],
+    "types": ["react-hook-form", "tailwind-merge", "clsx"], 
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
