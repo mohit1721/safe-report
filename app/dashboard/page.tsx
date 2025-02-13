@@ -7,18 +7,18 @@ import { signOut } from "next-auth/react";
 // import Image from "next/image";
 
 import 'video-react/dist/video-react.css';
-import {
-  BigPlayButton,
-  ControlBar,
-  CurrentTimeDisplay,
-  ForwardControl,
-  PlayToggle,
-  PlaybackRateMenuButton,
-  Player,
-  ReplayControl,
-  TimeDivider,
-  VolumeMenuButton
-} from "@types/video-react";
+// import {
+//   BigPlayButton,
+//   ControlBar,
+//   CurrentTimeDisplay,
+//   ForwardControl,
+//   PlayToggle,
+//   PlaybackRateMenuButton,
+//   Player,
+//   ReplayControl,
+//   TimeDivider,
+//   VolumeMenuButton
+// } from "@types/video-react";
 export default function Dashboard(){
     const { data: session } = useSession();
     const [reports, setReports] = useState<Report[]>([]);
@@ -216,38 +216,7 @@ in the app. for the aünin
   <p className="text-neutral-500">Video not available</p>
 )} */}
 
-{report?.video ? (
-      //use video player -npm i video-react
-      <Player  
-      // ref={`${report?.video}`}
-      aspectRatio="16:9"
-      playsInline
-      src={`${report?.video}`}
-      >  
-  <BigPlayButton position="center" />        
-      {/* <AiFillPlayCircle  /> */}
-  <ControlBar>
-  {/*Forwar and backward buttons  */}
-  <ReplayControl seconds={10} order={1.1} />
-  <ForwardControl seconds={30} order={1.2} />
-  <PlayToggle />
-      {/* Current display time */}
-  <CurrentTimeDisplay order={4.1} />
-
-  {/* Divider Sign */}
-  <TimeDivider order={4.2} />
-
-  {/* Speed of the Video */}
-  <PlaybackRateMenuButton
-  rates={[0.75, 1, 1.25, 1.5, 1.75, 2]}
-  order={7.1}/>
-  {/* volume */}
-  <VolumeMenuButton />
-</ControlBar>
-</Player>
-) : (
-  <p className="text-neutral-500">Video not available</p>
-)}
+{/* react-video */}
 
 
 {/* 
@@ -323,3 +292,39 @@ in the app. for the aünin
       );
 
 }
+
+/*
+react-video
+
+
+
+
+{report?.video ? (
+      //use video player -npm i video-react
+      <Player  
+      // ref={`${report?.video}`}
+      aspectRatio="16:9"
+      playsInline
+      src={`${report?.video}`}
+      >  
+  <BigPlayButton position="center" />        
+      <ControlBar>
+      <ReplayControl seconds={10} order={1.1} />
+      <ForwardControl seconds={30} order={1.2} />
+      <PlayToggle />
+      <CurrentTimeDisplay order={4.1} />
+    
+      <TimeDivider order={4.2} />
+    
+      <PlaybackRateMenuButton
+      rates={[0.75, 1, 1.25, 1.5, 1.75, 2]}
+      order={7.1}/>
+      <VolumeMenuButton />
+    </ControlBar>
+    </Player>
+    ) : (
+      <p className="text-neutral-500">Video not available</p>
+    )}
+    
+
+*/
