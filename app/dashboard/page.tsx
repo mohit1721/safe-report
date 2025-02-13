@@ -17,8 +17,8 @@ import {
   Player,
   ReplayControl,
   TimeDivider,
-  VolumeMenuButton,
-} from "video-react";
+  VolumeMenuButton
+} from "@types/video-react";
 export default function Dashboard(){
     const { data: session } = useSession();
     const [reports, setReports] = useState<Report[]>([]);
