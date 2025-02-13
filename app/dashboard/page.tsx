@@ -6,19 +6,6 @@ import { Report, ReportStatus, ReportType } from "@prisma/client";
 import { signOut } from "next-auth/react";
 // import Image from "next/image";
 
-import 'video-react/dist/video-react.css';
-// import {
-//   BigPlayButton,
-//   ControlBar,
-//   CurrentTimeDisplay,
-//   ForwardControl,
-//   PlayToggle,
-//   PlaybackRateMenuButton,
-//   Player,
-//   ReplayControl,
-//   TimeDivider,
-//   VolumeMenuButton
-// } from "@types/video-react";
 export default function Dashboard(){
     const { data: session } = useSession();
     const [reports, setReports] = useState<Report[]>([]);
@@ -296,7 +283,19 @@ in the app. for the aünin
 /*
 react-video
 
-
+// import '~video-react/dist/video-react.css'; //~ in new
+// import {
+//   BigPlayButton,
+//   ControlBar,
+//   CurrentTimeDisplay,
+//   ForwardControl,
+//   PlayToggle,
+//   PlaybackRateMenuButton,
+//   Player,
+//   ReplayControl,
+//   TimeDivider,
+//   VolumeMenuButton
+// } from "/video-react";
 
 
 {report?.video ? (
