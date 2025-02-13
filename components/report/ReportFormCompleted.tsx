@@ -13,7 +13,7 @@ interface ReportSubmittedProps {
     data: any;
     onComplete: (data: any) => void;
   }
-  const handleShare = (reportId) => { //link copy krna h aur toast dikhana h
+  const handleShare = (reportId : any) => { //link copy krna h aur toast dikhana h
      //copy current location[link]
     copy (reportId); //window is object
     toast.success("Report ID Copied to Clipboard");
