@@ -291,3 +291,90 @@ Returns a success message with the report's ID if the creation is successful.
 //     );
 //   }
 // }
+/*
+// POLICE STATION 
+import { NextResponse } from "next/server";
+import prisma from "../../../../lib/prisma"; // Prisma client for DB operations
+// Assuming that you have a PoliceStation model in your Prisma schema
+// import { PoliceStation } from "../../../../lib/prisma";
+
+export async function POST(request: Request) {
+  try {
+    // Destructure incoming request data
+    const {
+      reportId,
+      type,
+      specificType,
+      title,
+      description,
+      location,
+      latitude,
+      longitude,
+      image,
+      video,
+      status,
+    } = await request.json();
+
+    // Fetch nearest police station based on latitude and longitude
+    const nearestStation = await prisma.policeStation.findFirst({
+      where: {
+        // Assuming your Prisma model has a location field set up with geospatial data
+        location: {
+          // Use geospatial filtering to find the nearest police station within a 5km radius
+          near: {
+            latitude,
+            longitude,
+            maxDistance: 5000, // 5km radius
+          },
+        },
+      },
+    });
+
+    // If no nearby police station is found
+    if (!nearestStation) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "No nearby police station found",
+        },
+        { status: 404 }
+      );
+    }
+
+    // Create a new report and associate it with the nearest police station
+    const report = await prisma.report.create({
+      data: {
+        reportId,
+        type: type || "EMERGENCY", // Default to "EMERGENCY" if not provided
+        title,
+        description,
+        reportType: specificType,
+        location,
+        latitude: latitude || null,
+        longitude: longitude || null,
+        image: image || null,
+        video: video || null,
+        status: status || "PENDING", // Default to "PENDING"
+        policeStationId: nearestStation.id, // Associate the report with the nearest police station
+      },
+    });
+
+    return NextResponse.json({
+      success: true,
+      reportId: report.reportId,
+      message: "Report submitted successfully",
+    });
+  } catch (error) {
+    console.error("Error creating report:", error);
+    return NextResponse.json(
+      {
+        success: false,
+        error: "Failed to submit report",
+      },
+      { status: 500 }
+    );
+  }
+}
+
+
+*/
